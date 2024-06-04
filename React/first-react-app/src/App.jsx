@@ -1,5 +1,6 @@
 function App(){
-  return <h1>Hello Duniya</h1>
+  var myName = "Alok Patel"
+  return <h1>Hello Duniya {myName}</h1>
 }
 
 
