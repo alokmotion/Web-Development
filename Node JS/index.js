@@ -1,10 +1,30 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 
 
-const server = http.createServer(function(req, res){
-  res.end("Hello World");
+app.use(function(req, res, next){
+  console.log("middile ware chala")
+  next();
+});
+
+
+app.get("/", function(req, res){
+  res.send("I am the champion");
 })
 
-server.listen(3000);
+
+app.get("/about", function(req, res){
+  res.send("test")
+})
 
 
+app.get("/profile", function(req, res, next){
+  return next(new Error("yes Somthing is worng"))
+})
+
+app.use((err, req, res, next)=>{
+  console.error(err.stack)
+  res.status(500).send("Some thing is worng")
+})
+  
+app.listen(3000)
