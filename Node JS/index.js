@@ -2,6 +2,12 @@ const express = require('express');
 const app = express();
 
 
+//  form handling 
+
+app.use(express.json());
+app.use(express.urlencoded({extends: true}));
+
+
 app.use(function(req, res, next){
   console.log("middile ware chala")
   next();
